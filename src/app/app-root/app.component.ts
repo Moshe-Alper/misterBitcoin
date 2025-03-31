@@ -1,4 +1,5 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
+import { ContactService } from '../../services/contact.service';
 
 @Component({
     selector: 'app-root',
@@ -6,14 +7,15 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
     standalone: false,
     styleUrl: './app.component.scss'
 })
-export class AppComponent implements OnInit, OnDestroy {
+export class AppComponent implements OnInit {
+
+    private contactService = inject(ContactService)
 
     ngOnInit() {
-        console.log('Hello Angular!')
+        this.contactService.loadContacts()
+            .subscribe({
+                error: err => console.log('err:', err)
+            })
+
     }
-
-    ngOnDestroy() {
-
-    }
-
 }

@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { ContactService } from '../../../services/contact.service';
+import { Contact } from '../../models/contact.model';
 
 @Component({
   selector: 'home-page',
@@ -9,10 +10,14 @@ import { ContactService } from '../../../services/contact.service';
 })
 export class HomePageComponent implements OnInit {
 
-  constructor(private contactService: ContactService){}
+  private contactService = inject(ContactService)
+  contacts: Contact[] | undefined
 
   ngOnInit() {
-    
+    this.contactService.contacts$.subscribe({
+      next: contacts => {
+        this.contacts = contacts
+      }
+    })
   }
-
 }
