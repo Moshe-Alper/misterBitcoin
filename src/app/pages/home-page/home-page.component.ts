@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ContactService } from '../../../services/contact.service';
 
 @Component({
   selector: 'home-page',
@@ -6,6 +7,12 @@ import { Component } from '@angular/core';
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss'
 })
-export class HomePageComponent {
+export class HomePageComponent implements OnInit {
+
+  constructor(private contactService: ContactService){}
+
+  ngOnInit() {
+    
+  }
 
 }
