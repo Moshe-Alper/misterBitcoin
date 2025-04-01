@@ -6,12 +6,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app-root/app.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { ContactPageComponent } from './pages/contact-page/contact-page.component';
+import { ContactListComponent } from './cmps/contact-list/contact-list.component';
+import { ContactPreviewComponent } from './cmps/contact-preview/contact-preview.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         HomePageComponent,
         ContactPageComponent,
+        ContactListComponent,
+        ContactPreviewComponent,
     ],
     imports: [
         BrowserModule,
