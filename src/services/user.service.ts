@@ -1,11 +1,17 @@
+import { Injectable } from '@angular/core'
+import { Observable, from } from 'rxjs'
+
+@Injectable({
+  providedIn: 'root'
+})
 export class UserService {
 
-    public getUser() {
-        return this._createUsers
+    public getUser(): Observable<any[]> {
+        return from([this._createUsers()])
     }
 
     private _createUsers() {
-        const user = [
+        const users = [
             {
                 name: "Ochoa Hyde",
                 coins: 100,
@@ -37,5 +43,7 @@ export class UserService {
                 moves: []
             }
         ]
+        
+        return users
     }
 }
