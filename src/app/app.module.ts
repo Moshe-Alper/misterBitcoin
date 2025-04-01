@@ -10,6 +10,9 @@ import { ContactPageComponent } from './pages/contact-page/contact-page.componen
 import { ContactListComponent } from './cmps/contact-list/contact-list.component';
 import { ContactPreviewComponent } from './cmps/contact-preview/contact-preview.component';
 import { ContactFilterComponent } from './cmps/contact-filter/contact-filter.component';
+import { ContactDetailsPageComponent } from './pages/contact-details-page/contact-details-page.component';
+import { StatisticPageComponent } from './pages/statistic-page/statistic-page.component';
+import { ChartComponent } from './cmps/chart/chart.component';
 
 @NgModule({
     declarations: [
@@ -19,6 +22,9 @@ import { ContactFilterComponent } from './cmps/contact-filter/contact-filter.com
         ContactListComponent,
         ContactPreviewComponent,
         ContactFilterComponent,
+        ContactDetailsPageComponent,
+        StatisticPageComponent,
+        ChartComponent,
     ],
     imports: [
         BrowserModule,

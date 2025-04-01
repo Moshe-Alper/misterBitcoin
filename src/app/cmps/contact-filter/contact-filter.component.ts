@@ -3,6 +3,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
 
 import { ContactFilter } from '../../models/contact.model';
 import { ContactService } from '../../../services/contact.service';
+import { debounceTime, distinctUntilChanged, Subject } from 'rxjs';
 
 @Component({
   selector: 'contact-filter',
@@ -14,6 +15,8 @@ export class ContactFilterComponent implements OnInit {
 
   private destroyRef = inject(DestroyRef)
   private contactService = inject(ContactService)
+  private filterSubject = new Subject()
+
   filterBy!: ContactFilter
 
   ngOnInit(): void {
@@ -23,9 +26,18 @@ export class ContactFilterComponent implements OnInit {
         this.filterBy = filterBy
       })
 
+    this.filterSubject
+      .pipe(
+        debounceTime(400),
+        distinctUntilChanged(),
+        takeUntilDestroyed(this.destroyRef)
+      )
+      .subscribe(() => {
+        this.contactService.setFilter(this.filterBy)
+      })
+
   }
   onSetFilter(filterTerm: string) {
-    console.log('🚀 filterTerm', filterTerm)
-    this.contactService.setFilter(this.filterBy)
+    this.filterSubject.next(filterTerm)
   }
 }
