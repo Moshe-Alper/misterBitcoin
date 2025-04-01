@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, BehaviorSubject, throwError, from, tap, retry, catchError } from 'rxjs';
+import { Observable, BehaviorSubject, throwError, from, tap, retry, catchError, take } from 'rxjs';
 import { Contact, ContactFilter } from '../app/models/contact.model';
 import { storageService } from './async-storage.service';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -34,7 +34,6 @@ export class ContactService {
                     if (filterBy && filterBy.term) {
                         contacts = this._filter(contacts, filterBy.term)
                     }
-                    contacts = contacts.filter(contact => contact.name.toLowerCase().includes(filterBy.term.toLowerCase()))
                     this._contacts$.next(this._sort(contacts))
                 }),
                 retry(1),
@@ -60,6 +59,15 @@ export class ContactService {
             )
     }
 
+    public setFilter(filterBy: ContactFilter) {
+        this._filterBy$.next(filterBy) 
+        this.loadContacts().pipe(take(1)).subscribe({
+            error: (err) => {
+                console.error('Error loading filtered contacts:', err)
+            }
+        })
+    }
+
     public saveContact(contact: Contact) {
         return contact._id ? this._updateContact(contact) : this._addContact(contact)
     }
@@ -71,7 +79,6 @@ export class ContactService {
             phone: ''
         }
     }
-
 
     private _updateContact(contact: Contact) {
         return from(storageService.put<Contact>(ENTITY, contact))

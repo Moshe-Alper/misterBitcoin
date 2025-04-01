@@ -22,5 +22,10 @@ export class ContactFilterComponent implements OnInit {
       .subscribe(filterBy => {
         this.filterBy = filterBy
       })
+
+  }
+  onSetFilter(filterTerm: string) {
+    console.log('🚀 filterTerm', filterTerm)
+    this.contactService.setFilter(this.filterBy)
   }
 }

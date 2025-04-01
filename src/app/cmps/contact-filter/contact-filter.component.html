@@ -1,5 +1,5 @@
 <section [style.marginBlock.px]="10" class="contact-filter">
-    <input  name="term" type="text"
+    <input [(ngModel)]="filterBy.term" (ngModelChange)="onSetFilter($event)" name="term" type="text"
         placeholder="Search" />
 </section>
 
