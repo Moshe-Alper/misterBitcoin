@@ -9,5 +9,5 @@ import { Contact } from '../../models/contact.model';
 })
 export class ContactListComponent {
 
-  @Input() contacts: Contact[] | undefined
+  @Input() contacts: Contact[] | null = null
 }

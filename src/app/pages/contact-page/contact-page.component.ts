@@ -2,6 +2,7 @@ import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
 import { ContactService } from '../../../services/contact.service';
 import { Contact } from '../../models/contact.model';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'contact-page',
@@ -15,15 +16,17 @@ export class ContactPageComponent implements OnInit {
   private destroyRef = inject(DestroyRef)
   
   contacts: Contact[] | undefined
+  contacts$: Observable<Contact[]> = this.contactService.contacts$
 
+  
   ngOnInit() {
 
-    this.contactService.contacts$
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe({
-        next: contacts => {
-          this.contacts = contacts
-        }
-      })
+    // this.contactService.contacts$
+    //   .pipe(takeUntilDestroyed(this.destroyRef))
+    //   .subscribe({
+    //     next: contacts => {
+    //       this.contacts = contacts
+    //     }
+    //   })
   }
 }

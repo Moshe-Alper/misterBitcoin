@@ -1,4 +1,4 @@
-.contact-preview {
+:host {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -24,5 +24,15 @@
     .contact-phone {
         font-size: 1rem;
         color: #555;
+    }
+
+    .contact-img {
+        img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+        }
     }
 }
