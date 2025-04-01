@@ -1,4 +1,6 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
+
 import { ContactService } from '../../../services/contact.service';
 import { Contact } from '../../models/contact.model';
 import { UserService } from '../../../services/user.service';
@@ -10,29 +12,34 @@ import { User } from '../../models/user.modal';
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss'
 })
+
 export class HomePageComponent implements OnInit {
 
   private contactService = inject(ContactService)
+  private destroyRef = inject(DestroyRef)
   contacts: Contact[] | undefined
 
   private userService = inject(UserService)
   users: User[] | undefined
 
   ngOnInit() {
-    this.contactService.contacts$.subscribe({
-      next: contacts => {
-        this.contacts = contacts
-      }
-    })
+    this.contactService.contacts$
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe({
+        next: contacts => {
+          this.contacts = contacts
+        }
+      })
 
-    this.loadUsers()
-  }
-
-  private loadUsers() {
-    this.userService.getUser().subscribe({
+    this.userService.getUser()
+    .pipe(takeUntilDestroyed(this.destroyRef))
+    .subscribe({
       next: (users: User[]) => {
-      this.users = users
+        this.users = users
       }
     })
   }
+
+
 }
+

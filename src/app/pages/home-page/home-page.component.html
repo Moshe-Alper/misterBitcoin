@@ -1,7 +1,12 @@
 <section class="home-page">
     <h4>Names:     
-        <li *ngFor="let user of users">{{user.name}}: {{user.coins}}</li>
+        <li *ngFor="let user of users">{{user.name}}</li>
     </h4>
-
+    <h4>Bitcoin:
+        <li *ngFor="let user of users"></li>
+    </h4>
+    <h4>USD:     
+        <li *ngFor="let user of users">{{user.coins}}</li>
+    </h4>
 <!-- <pre>{{contacts|json}}</pre> -->
 </section>
