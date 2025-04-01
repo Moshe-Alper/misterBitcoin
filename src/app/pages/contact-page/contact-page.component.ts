@@ -14,19 +14,21 @@ export class ContactPageComponent implements OnInit {
 
   private contactService = inject(ContactService)
   private destroyRef = inject(DestroyRef)
-  
+
   contacts: Contact[] | undefined
   contacts$: Observable<Contact[]> = this.contactService.contacts$
 
-  
+
   ngOnInit() {
 
-    // this.contactService.contacts$
-    //   .pipe(takeUntilDestroyed(this.destroyRef))
-    //   .subscribe({
-    //     next: contacts => {
-    //       this.contacts = contacts
-    //     }
-    //   })
   }
+
+  onRemoveContact(contactId: string) {
+    console.log('🚀 hi')
+    this.contactService.deleteContact(contactId)
+      .subscribe({
+        error: err => console.log('err', err)
+      })
+  }
+
 }

@@ -5,4 +5,5 @@
     <div class="contact-img">
         <img src="https://robohash.org//{{ contact._id }}?set=set5" alt="Contact Image">
     </div>
-</div>
+    <button (click)="remove.emit(contact._id)" class="remove-btn">X</button>
+</div> 

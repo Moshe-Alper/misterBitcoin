@@ -1,4 +1,4 @@
 <section class="contact-page">
     <h1>Contacts</h1>
-    <contact-list [contacts]="contacts$ | async" />
+    <contact-list (remove)="onRemoveContact($event)" [contacts]="contacts$ | async" />
 </section>
