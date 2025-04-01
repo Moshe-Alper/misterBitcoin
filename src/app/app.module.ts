@@ -8,6 +8,7 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
 import { ContactPageComponent } from './pages/contact-page/contact-page.component';
 import { ContactListComponent } from './cmps/contact-list/contact-list.component';
 import { ContactPreviewComponent } from './cmps/contact-preview/contact-preview.component';
+import { ContactFilterComponent } from './cmps/contact-filter/contact-filter.component';
 
 @NgModule({
     declarations: [
@@ -16,6 +17,7 @@ import { ContactPreviewComponent } from './cmps/contact-preview/contact-preview.
         ContactPageComponent,
         ContactListComponent,
         ContactPreviewComponent,
+        ContactFilterComponent,
     ],
     imports: [
         BrowserModule,
