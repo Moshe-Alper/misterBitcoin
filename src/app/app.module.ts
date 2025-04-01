@@ -5,11 +5,13 @@ import { HttpClientModule } from '@angular/common/http'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app-root/app.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
+import { ContactPageComponent } from './pages/contact-page/contact-page.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         HomePageComponent,
+        ContactPageComponent,
     ],
     imports: [
         BrowserModule,

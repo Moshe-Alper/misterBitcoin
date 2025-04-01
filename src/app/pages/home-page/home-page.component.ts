@@ -1,8 +1,6 @@
 import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
 
-import { ContactService } from '../../../services/contact.service';
-import { Contact } from '../../models/contact.model';
 import { UserService } from '../../../services/user.service';
 import { User } from '../../models/user.modal';
 
@@ -15,22 +13,13 @@ import { User } from '../../models/user.modal';
 
 export class HomePageComponent implements OnInit {
 
-  private contactService = inject(ContactService)
-  private destroyRef = inject(DestroyRef)
-  contacts: Contact[] | undefined
 
   private userService = inject(UserService)
+  private destroyRef = inject(DestroyRef)
+
   users: User[] | undefined
 
   ngOnInit() {
-    this.contactService.contacts$
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe({
-        next: contacts => {
-          this.contacts = contacts
-        }
-      })
-
     this.userService.getUser()
     .pipe(takeUntilDestroyed(this.destroyRef))
     .subscribe({
