@@ -11,15 +11,10 @@ import { ContactService } from '../../../services/contact.service';
 })
 export class ContactDetailsPageComponent implements OnInit {
 
-  private contactService = inject(ContactService)
-  private destroyRef = inject(DestroyRef)
-
-  contacts: Contact[] | undefined
-  contacts$: Observable<Contact[]> = this.contactService.contacts$
 
 
   ngOnInit() {
-
+   
   }
 
 }

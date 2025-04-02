@@ -10,4 +10,9 @@ import { Contact } from '../../models/contact.model';
 export class ContactListComponent {
 
   @Input() contacts: Contact[] | null = null
-  @Output() remove = new EventEmitter<string>()}
+  @Input() selectedContact: Contact | null = null
+
+  @Output() remove = new EventEmitter<string>()
+  @Output() select = new EventEmitter<Contact>()
+
+}

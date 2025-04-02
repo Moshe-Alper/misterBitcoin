@@ -9,4 +9,8 @@ import { Contact } from '../../models/contact.model';
 })
 export class ContactPreviewComponent {
   @Input() contact!: Contact
-  @Output() remove = new EventEmitter<string>()}
+  @Input() isSelected: boolean = false
+  @Output() remove = new EventEmitter<string>()
+  @Output() select = new EventEmitter<Contact>()
+
+}
