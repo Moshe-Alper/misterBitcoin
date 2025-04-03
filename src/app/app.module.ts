@@ -15,6 +15,7 @@ import { ChartComponent } from './cmps/chart/chart.component';
 import { AppHeaderComponent } from './cmps/app-header/app-header.component';
 import { LoaderComponent } from './cmps/loader/loader.component';
 import { PageNotFoundComponent } from './cmps/page-not-found/page-not-found.component';
+import { ContactDetailsComponent } from './pages/contact-details/contact-details.component';
 
 @NgModule({
     declarations: [
@@ -24,6 +25,7 @@ import { PageNotFoundComponent } from './cmps/page-not-found/page-not-found.comp
         ContactListComponent,
         ContactPreviewComponent,
         ContactFilterComponent,
+        ContactDetailsComponent,
         StatisticPageComponent,
         ChartComponent,
         AppHeaderComponent,
@@ -35,6 +37,7 @@ import { PageNotFoundComponent } from './cmps/page-not-found/page-not-found.comp
         AppRoutingModule,
         FormsModule,
         HttpClientModule,
+
     ],
     providers: [],
     bootstrap: [AppComponent]
