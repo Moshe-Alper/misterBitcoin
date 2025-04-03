@@ -10,6 +10,8 @@ import { UserService } from '../../services/user.service';
 })
 export class AppComponent implements OnInit {
 
+    title = 'misterBitcoin'
+
     private contactService = inject(ContactService)
     private userService = inject(UserService)
 

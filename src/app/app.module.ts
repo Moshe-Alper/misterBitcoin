@@ -13,6 +13,8 @@ import { ContactFilterComponent } from './cmps/contact-filter/contact-filter.com
 import { ContactDetailsPageComponent } from './pages/contact-details-page/contact-details-page.component';
 import { StatisticPageComponent } from './pages/statistic-page/statistic-page.component';
 import { ChartComponent } from './cmps/chart/chart.component';
+import { AppHeaderComponent } from './cmps/app-header/app-header.component';
+import { LoaderComponent } from './cmps/loader/loader.component';
 
 @NgModule({
     declarations: [
@@ -25,6 +27,8 @@ import { ChartComponent } from './cmps/chart/chart.component';
         ContactDetailsPageComponent,
         StatisticPageComponent,
         ChartComponent,
+        AppHeaderComponent,
+        LoaderComponent,
     ],
     imports: [
         BrowserModule,
