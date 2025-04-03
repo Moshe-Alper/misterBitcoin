@@ -15,6 +15,7 @@ import { StatisticPageComponent } from './pages/statistic-page/statistic-page.co
 import { ChartComponent } from './cmps/chart/chart.component';
 import { AppHeaderComponent } from './cmps/app-header/app-header.component';
 import { LoaderComponent } from './cmps/loader/loader.component';
+import { PageNotFoundComponent } from './cmps/page-not-found/page-not-found.component';
 
 @NgModule({
     declarations: [
@@ -29,6 +30,7 @@ import { LoaderComponent } from './cmps/loader/loader.component';
         ChartComponent,
         AppHeaderComponent,
         LoaderComponent,
+        PageNotFoundComponent,
     ],
     imports: [
         BrowserModule,

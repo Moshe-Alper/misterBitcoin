@@ -1,10 +1,14 @@
 <header class="container">
     <h1 class="logo">
-        misterBitcoin
+        <a routerLink="/home">misterBitcoin</a>
     </h1>
     <nav>
-        <a>Home</a>
-        <a>Contacts</a>
-        <a>Chart</a>
+        <a 
+        routerLink="/home" 
+        routerLinkActive="active" 
+        [routerLinkActiveOptions]="{ exact: true }">
+        Home</a>
+        <a routerLink="/contact" routerLinkActive="active">Contacts</a>
+        <a routerLink="/statistic" routerLinkActive="active">Statistics</a>
     </nav>
 </header>
