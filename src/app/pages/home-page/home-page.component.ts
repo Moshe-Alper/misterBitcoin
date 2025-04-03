@@ -1,9 +1,9 @@
-import { Component, DestroyRef, inject, OnInit } from '@angular/core';
-import { Observable, Subscription } from 'rxjs';
+import { Component, DestroyRef, inject, OnInit } from '@angular/core'
+import { Observable, Subscription, switchMap } from 'rxjs'
 
-import { User } from '../../models/user.modal';
-import { BitcoinService } from '../../../services/bitcoin.service';
-import { UserService } from '../../../services/user.service';
+import { User } from '../../models/user.modal'
+import { BitcoinService } from '../../../services/bitcoin.service'
+import { UserService } from '../../../services/user.service'
 
 @Component({
   selector: 'home-page',
@@ -14,7 +14,7 @@ import { UserService } from '../../../services/user.service';
 
 export class HomePageComponent implements OnInit {
 
-  user!: User
+  user$!: Observable<User>
   BTC$!: Observable<string>
 
 
@@ -24,9 +24,11 @@ export class HomePageComponent implements OnInit {
   ) { }
 
 
-  ngOnInit(): void {
-    this.user = this.userService.getUser()
-    this.BTC$ = this.bitcoinService.getRate(100)
+  ngOnInit() {
+    this.user$ = this.userService.loggedInUser$
+    this.BTC$ = this.user$.pipe(
+      switchMap(user => this.bitcoinService.getRateStream(user.coins))
+    )
   }
 
 }

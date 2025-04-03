@@ -14,12 +14,9 @@ export class AppComponent implements OnInit {
     private userService = inject(UserService)
 
     ngOnInit() {
-
         this.contactService.loadContacts()
             .subscribe({
                 error: err => console.log('err:', err)
             })
-
-
     }
 }
