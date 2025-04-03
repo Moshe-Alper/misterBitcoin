@@ -1,6 +1,6 @@
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { ContactService } from '../../services/contact.service';
-import { UserService } from '../../services/user.service';
+import { LoaderService } from '../../services/loader.service';
 
 @Component({
     selector: 'app-root',
@@ -9,15 +9,15 @@ import { UserService } from '../../services/user.service';
     styleUrl: './app.component.scss'
 })
 export class AppComponent implements OnInit {
-
     title = 'misterBitcoin'
 
     private contactService = inject(ContactService)
-    private userService = inject(UserService)
+    private loaderService = inject(LoaderService)
 
     ngOnInit() {
         this.contactService.loadContacts()
             .subscribe({
+                next: () => this.loaderService.setIsLoading(false),
                 error: err => console.log('err:', err)
             })
     }
