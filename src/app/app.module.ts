@@ -10,7 +10,6 @@ import { ContactPageComponent } from './pages/contact-page/contact-page.componen
 import { ContactListComponent } from './cmps/contact-list/contact-list.component';
 import { ContactPreviewComponent } from './cmps/contact-preview/contact-preview.component';
 import { ContactFilterComponent } from './cmps/contact-filter/contact-filter.component';
-import { ContactDetailsPageComponent } from './pages/contact-details-page/contact-details-page.component';
 import { StatisticPageComponent } from './pages/statistic-page/statistic-page.component';
 import { ChartComponent } from './cmps/chart/chart.component';
 import { AppHeaderComponent } from './cmps/app-header/app-header.component';
@@ -25,7 +24,6 @@ import { PageNotFoundComponent } from './cmps/page-not-found/page-not-found.comp
         ContactListComponent,
         ContactPreviewComponent,
         ContactFilterComponent,
-        ContactDetailsPageComponent,
         StatisticPageComponent,
         ChartComponent,
         AppHeaderComponent,
