@@ -1,24 +1,28 @@
-import { Injectable } from '@angular/core'
-import { Observable, from } from 'rxjs'
+import { Injectable } from "@angular/core";
+import { BehaviorSubject } from "rxjs";
+import { User } from "../app/models/user.modal";
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class UserService {
 
-    public getUser(): Observable<any[]> {
-        return from([this._createUser()])
+    private user: User = {
+        name: "John Carlos",
+        coins: 100,
+        moves: []
     }
 
-    private _createUser() {
-        const users = [
-            {
-                name: "Ochoa Hyde",
-                coins: 100,
-                moves: []
-            }
-        ]
-        
-        return users
+    private _loggedInUser$ = new BehaviorSubject<User>(this.user)
+    public loggedInUser$ = this._loggedInUser$.asObservable()
+
+
+    getUser(): User {
+        return this.user
+    }
+
+    addCoins = (coins: number) => {
+        const user = this._loggedInUser$.value
+        this._loggedInUser$.next({ ...user, coins: user.coins + coins })
     }
 }

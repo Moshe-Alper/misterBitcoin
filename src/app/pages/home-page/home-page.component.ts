@@ -1,9 +1,9 @@
 import { Component, DestroyRef, inject, OnInit } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
+import { Observable, Subscription } from 'rxjs';
 
-import { UserService } from '../../../services/user.service';
 import { User } from '../../models/user.modal';
 import { BitcoinService } from '../../../services/bitcoin.service';
+import { UserService } from '../../../services/user.service';
 
 @Component({
   selector: 'home-page',
@@ -14,24 +14,20 @@ import { BitcoinService } from '../../../services/bitcoin.service';
 
 export class HomePageComponent implements OnInit {
 
+  user!: User
+  BTC$!: Observable<string>
 
-  private userService = inject(UserService)
-  private destroyRef = inject(DestroyRef)
 
-  users: User[] | undefined
+  constructor(
+    private userService: UserService,
+    private bitcoinService: BitcoinService
+  ) { }
 
-  ngOnInit() {
-    this.userService.getUser()
-    .pipe(takeUntilDestroyed(this.destroyRef))
-    .subscribe({
-      next: (users: User[]) => {
-        this.users = users
-      }
-    })
+
+  ngOnInit(): void {
+    this.user = this.userService.getUser()
+    this.BTC$ = this.bitcoinService.getRate(100)
   }
-
-  
-  
 
 }
 

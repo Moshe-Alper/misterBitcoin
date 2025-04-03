@@ -1,11 +1,5 @@
 <section class="home-page">
-    <h4>Names:     
-        <li *ngFor="let user of users">{{user.name}}</li>
-    </h4>
-    <h4>BTC:
-        <li *ngFor="let user of users"></li>
-    </h4>
-    <h4>Coins:     
-        <li *ngFor="let user of users">{{user.coins}}</li>
-    </h4>
+    <h1>Hello {{ user.name }}</h1>
+    <h3>Coins: {{ user.coins }}</h3>
+    <h3>BTC: {{ BTC$ | async}}</h3>
 </section>

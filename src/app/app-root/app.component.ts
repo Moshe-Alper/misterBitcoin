@@ -20,11 +20,6 @@ export class AppComponent implements OnInit {
                 error: err => console.log('err:', err)
             })
 
-        
-            this.userService.getUser()
-            .subscribe({
-                error: err => console.log('err:', err)
-            })
 
     }
 }
