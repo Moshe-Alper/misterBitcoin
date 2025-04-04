@@ -1,5 +1,8 @@
 <section class="contact-page">
     <contact-filter />
+    <section [style.marginBlock.rem]="0.5">
+      <a routerLink="/contact/edit">Add Contact</a>
+    </section>
     <contact-list 
     [contacts]="contacts" 
     [selectedContact]="selectedContact"
@@ -7,3 +10,4 @@
     (select)="onSelectContact($event)">
   </contact-list>
 </section>
+<router-outlet />

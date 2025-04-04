@@ -5,10 +5,14 @@ import { ContactPageComponent } from './pages/contact-page/contact-page.componen
 import { StatisticPageComponent } from './pages/statistic-page/statistic-page.component';
 import { PageNotFoundComponent } from './cmps/page-not-found/page-not-found.component';
 import { ContactDetailsComponent } from './pages/contact-details/contact-details.component';
+import { ContactEditComponent } from './pages/contact-edit/contact-edit.component';
 
 const routes: Routes = [
   {path: 'home', component: HomePageComponent},
-  {path: 'contact', component: ContactPageComponent},
+  {path: 'contact', component: ContactPageComponent, children: [
+    {path: 'edit', component: ContactEditComponent},
+
+  ]},
   {path: 'contact/:contactId', component: ContactDetailsComponent},
   {path: 'statistic', component: StatisticPageComponent},
   {path: '', pathMatch: 'full', redirectTo: 'home'},

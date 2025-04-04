@@ -16,6 +16,7 @@ import { AppHeaderComponent } from './cmps/app-header/app-header.component';
 import { LoaderComponent } from './cmps/loader/loader.component';
 import { PageNotFoundComponent } from './cmps/page-not-found/page-not-found.component';
 import { ContactDetailsComponent } from './pages/contact-details/contact-details.component';
+import { ContactEditComponent } from './pages/contact-edit/contact-edit.component';
 
 @NgModule({
     declarations: [
@@ -31,6 +32,7 @@ import { ContactDetailsComponent } from './pages/contact-details/contact-details
         AppHeaderComponent,
         LoaderComponent,
         PageNotFoundComponent,
+        ContactEditComponent,
     ],
     imports: [
         BrowserModule,

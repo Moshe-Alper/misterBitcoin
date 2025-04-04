@@ -72,7 +72,7 @@ export class ContactService {
         return contact._id ? this._updateContact(contact) : this._addContact(contact)
     }
 
-    public getEmptyContact() {
+    public getEmptyContact(): Partial<Contact> {
         return {
             name: '',
             email: '',
