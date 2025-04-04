@@ -11,7 +11,7 @@ const routes: Routes = [
   {path: 'home', component: HomePageComponent},
   {path: 'contact', component: ContactPageComponent, children: [
     {path: 'edit', component: ContactEditComponent},
-
+    {path: 'edit/:contactId', component: ContactEditComponent},
   ]},
   {path: 'contact/:contactId', component: ContactDetailsComponent},
   {path: 'statistic', component: StatisticPageComponent},

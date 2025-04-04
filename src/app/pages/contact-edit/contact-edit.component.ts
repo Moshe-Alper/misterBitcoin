@@ -1,8 +1,9 @@
-import { Component, DestroyRef, inject } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { ContactService } from '../../../services/contact.service';
 import { Contact } from '../../models/contact.model';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { filter, map, switchMap } from 'rxjs';
 
 @Component({
   selector: 'contact-edit',
@@ -10,12 +11,25 @@ import { Router } from '@angular/router';
   templateUrl: './contact-edit.component.html',
   styleUrl: './contact-edit.component.scss'
 })
-export class ContactEditComponent {
+export class ContactEditComponent implements OnInit {
+
   private contactService = inject(ContactService)
   private destroyRef = inject(DestroyRef)
+  private route = inject(ActivatedRoute)
   private router = inject(Router)
 
   contact = this.contactService.getEmptyContact()
+
+  ngOnInit(): void {
+    this.route.params.pipe(
+      map(params => params['contactId']),
+      filter(contactId => contactId),
+      switchMap(contactId => this.contactService.getContactById(contactId)),
+      takeUntilDestroyed(this.destroyRef))
+      .subscribe({
+        next: contact => this.contact = contact
+      })
+  }
 
   onSaveContact() {
     this.contactService.saveContact(this.contact as Contact)
