@@ -17,7 +17,6 @@ export class ContactPageComponent implements OnInit {
   private destroyRef = inject(DestroyRef)
   private router = inject(Router)
 
-  selectedContact: Contact | null = null
   contacts: Contact[] = []
   contacts$: Observable<Contact[]> = this.contactService.contacts$
   

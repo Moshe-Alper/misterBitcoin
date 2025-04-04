@@ -1,15 +1,17 @@
 <article class="contact-preview">
-    <p class="contact-name">{{contact.name}}</p>
-    <p class="contact-email">{{contact.email}}</p>
-    <p class="contact-phone">{{contact.phone}}</p>
-    <div class="contact-img">
-        <img src="https://robohash.org//{{ contact._id }}?set=set5" alt="Contact Image">
-    </div>
+    <section class="info">
+        <a [routerLink]="['/contact', contact._id]" class="data">
+            <p class="contact-name">{{contact.name}}</p>
+            <p class="contact-email">{{contact.email}}</p>
+            <p class="contact-phone">{{contact.phone}}</p>
+            <div class="contact-img">
+                <img src="https://robohash.org//{{ contact._id }}?set=set5" alt="Contact Image">
+            </div>
+        </a>
+    </section>
 
     <section class="actions">
         <button (click)="remove.emit(contact._id)" class="btn">X</button>
-        <button (click)="select.emit(contact)" class="btn">Select</button>
         <button [routerLink]="['/contact/edit', contact._id]">Edit</button>
     </section>
-        
 </article> 

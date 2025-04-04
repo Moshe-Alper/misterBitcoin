@@ -5,9 +5,8 @@
     </section>
     <contact-list 
     [contacts]="contacts" 
-    [selectedContact]="selectedContact"
     (remove)="onRemoveContact($event)"
-    (select)="onSelectContact($event)">
+    >
   </contact-list>
 </section>
 <router-outlet />
