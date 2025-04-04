@@ -6,6 +6,7 @@ import { StatisticPageComponent } from './pages/statistic-page/statistic-page.co
 import { PageNotFoundComponent } from './cmps/page-not-found/page-not-found.component';
 import { ContactDetailsComponent } from './pages/contact-details/contact-details.component';
 import { ContactEditComponent } from './pages/contact-edit/contact-edit.component';
+import { authGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {path: 'home', component: HomePageComponent},
@@ -13,7 +14,7 @@ const routes: Routes = [
     {path: 'edit', component: ContactEditComponent},
     {path: 'edit/:contactId', component: ContactEditComponent},
   ]},
-  {path: 'contact/:contactId', component: ContactDetailsComponent},
+  {path: 'contact/:contactId', component: ContactDetailsComponent, canActivate: [authGuard]},
   {path: 'statistic', component: StatisticPageComponent},
   {path: '', pathMatch: 'full', redirectTo: 'home'},
   {path: '**', component: PageNotFoundComponent},
