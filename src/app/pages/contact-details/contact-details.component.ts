@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ContactService } from '../../../services/contact.service';
 import { Contact } from '../../models/contact.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, switchMap } from 'rxjs';
 
 
@@ -15,9 +15,15 @@ import { Observable, switchMap } from 'rxjs';
 export class ContactDetailsComponent  {
     private contactService = inject(ContactService)
     private route = inject(ActivatedRoute)
+    private router = inject(Router)
+
     
     contact$: Observable<Contact> =  this.route.params.pipe(
         switchMap(params => this.contactService.getContactById(params['contactId']))
     )
+
+    onBack() {
+        this.router.navigateByUrl('/contact')
+    }
 
 }

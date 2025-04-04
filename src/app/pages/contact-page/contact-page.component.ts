@@ -3,6 +3,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
 import { ContactService } from '../../../services/contact.service';
 import { Contact } from '../../models/contact.model';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'contact-page',
@@ -14,12 +15,12 @@ export class ContactPageComponent implements OnInit {
 
   private contactService = inject(ContactService)
   private destroyRef = inject(DestroyRef)
+  private router = inject(Router)
 
   selectedContact: Contact | null = null
   contacts: Contact[] = []
   contacts$: Observable<Contact[]> = this.contactService.contacts$
-
-
+  
   ngOnInit() {
     this.contacts$
     .pipe(takeUntilDestroyed(this.destroyRef))
@@ -36,8 +37,6 @@ export class ContactPageComponent implements OnInit {
   }
 
   onSelectContact(contact: Contact) {
-    console.log('🚀 contact', contact)
-    this.selectedContact = contact
+    this.router.navigate(['/contact', contact._id])
   }
-
 }
