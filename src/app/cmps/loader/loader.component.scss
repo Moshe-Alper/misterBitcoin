@@ -1,19 +1,23 @@
-:host {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh; 
-  }
-  
+.loader-wrapper {
+
   .icon {
-    width: 3.125rem; 
+    width: 3.125rem;
     height: 3.125rem;
-    background-image: url('https://upload.wikimedia.org/wikipedia/commons/4/46/Bitcoin.svg'); 
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/4/46/Bitcoin.svg');
     background-size: cover;
     animation: spin 1s linear infinite;
+    position: fixed;
+    inset: 0;
+    margin: auto;
   }
-  
+
   @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+      transform: rotate(0deg);
+    }
+
+    100% {
+      transform: rotate(360deg);
+    }
   }
+}

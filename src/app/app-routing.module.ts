@@ -7,14 +7,20 @@ import { PageNotFoundComponent } from './cmps/page-not-found/page-not-found.comp
 import { ContactDetailsComponent } from './pages/contact-details/contact-details.component';
 import { ContactEditComponent } from './pages/contact-edit/contact-edit.component';
 import { authGuard } from './guards/auth.guard';
+import { contactResolver } from './resolvers/contact.resolver';
 
 const routes: Routes = [
   {path: 'home', component: HomePageComponent},
   {path: 'contact', component: ContactPageComponent, children: [
     {path: 'edit', component: ContactEditComponent},
-    {path: 'edit/:contactId', component: ContactEditComponent},
+    {path: 'edit/:contactId', component: ContactEditComponent, resolve: {contact: contactResolver}},
   ]},
-  {path: 'contact/:contactId', component: ContactDetailsComponent, canActivate: [authGuard]},
+  {
+    path: 'contact/:contactId', 
+    component: ContactDetailsComponent, 
+    canActivate: [authGuard],
+    resolve: { contact: contactResolver}
+  },
   {path: 'statistic', component: StatisticPageComponent},
   {path: '', pathMatch: 'full', redirectTo: 'home'},
   {path: '**', component: PageNotFoundComponent},

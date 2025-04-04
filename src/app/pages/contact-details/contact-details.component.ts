@@ -2,7 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { ContactService } from '../../../services/contact.service';
 import { Contact } from '../../models/contact.model';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable, switchMap } from 'rxjs';
+import { map, Observable, switchMap } from 'rxjs';
 
 
 
@@ -18,9 +18,8 @@ export class ContactDetailsComponent  {
     private router = inject(Router)
 
     
-    contact$: Observable<Contact> =  this.route.params.pipe(
-        switchMap(params => this.contactService.getContactById(params['contactId']))
-    )
+    contact$: Observable<Contact> = this.route.data.pipe(map(data => data['contact']))
+    
 
     onBack() {
         this.router.navigateByUrl('/contact')
