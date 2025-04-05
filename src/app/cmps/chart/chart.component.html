@@ -1,10 +1,37 @@
-<div *ngIf="loading">Loading chart data...</div>
-<div *ngIf="errorMessage" style="color: red;">{{ errorMessage }}</div>
-<google-chart
-  *ngIf="!loading && !errorMessage && myData.length > 0"
-  [type]="chartType"
-  [data]="myData"
-  [options]="chartOptions"
-  #chart
-></google-chart>
-<div *ngIf="!loading && !errorMessage && myData.length === 0">No trade volume data available.</div>
+<h2>Blockchain Data Charts</h2>
+
+<div class="chart-container">
+  <h3>Trade Volume</h3>
+  <div *ngIf="tradeVolumeLoading">Loading trade volume chart data...</div>
+  <google-chart
+    *ngIf="!tradeVolumeLoading && !tradeVolumeErrorMessage && tradeVolumeData.length > 0"
+    [type]="tradeVolumeChartType"
+    [data]="tradeVolumeData"
+    [options]="tradeVolumeChartOptions"
+    #tradeVolumeChart
+  ></google-chart>
+  <div *ngIf="!tradeVolumeLoading && tradeVolumeErrorMessage" class="error-message">
+    {{ tradeVolumeErrorMessage }}
+  </div>
+  <div *ngIf="!tradeVolumeLoading && !tradeVolumeErrorMessage && tradeVolumeData.length === 0">
+    No trade volume data available.
+  </div>
+</div>
+
+<div class="chart-container">
+  <h3>Average Transactions Per Block</h3>
+  <div *ngIf="avgTransLoading">Loading average transactions chart data...</div>
+  <google-chart
+    *ngIf="!avgTransLoading && !avgTransErrorMessage && avgTransData.length > 0"
+    [type]="avgTransChartType"
+    [data]="avgTransData"
+    [options]="avgTransChartOptions"
+    #avgTransChart
+  ></google-chart>
+  <div *ngIf="!avgTransLoading && avgTransErrorMessage" class="error-message">
+    {{ avgTransErrorMessage }}
+  </div>
+  <div *ngIf="!avgTransLoading && !avgTransErrorMessage && avgTransData.length === 0">
+    No average transaction data available.
+  </div>
+</div>
