@@ -1,6 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { interval, Observable, switchMap, timer } from 'rxjs';
+import { interval, map, Observable, of, switchMap, timer } from 'rxjs';
+import { BlockchainTradeVolumeResponse, Trade } from '../app/models/bitcoin.model';
+import { storageService } from './storage.service';
+
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -20,5 +25,21 @@ export class BitcoinService {
   getRate(coins: number): Observable<string> {
     return this.http.get<string>(`https://blockchain.info/tobtc?currency=USD&value=${coins}`)
   }
+
+  getTradeVolume(): Observable<Trade[]> {
+    const data = storageService.load(this.TRADE_VOLUME_KEY)
+    console.log('data service', data)
+
+    if (data) return of(data)
+    return this.http.get<BlockchainTradeVolumeResponse>(`https://api.blockchain.info/charts/trade-volume?timespan=5months&format=json&cors=true`)
+      .pipe(map(res => {
+        const vals: Trade[] = res.values.map(item => ({
+          name: new Date(item.x * 1000).toLocaleDateString("en-US"),
+          value: item.y
+        }))
+        storageService.store(this.TRADE_VOLUME_KEY, vals)
+        return vals
+      }))
+}
 
 }

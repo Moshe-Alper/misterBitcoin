@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http'
 import { FormsModule } from '@angular/forms';
+import { GoogleChartsModule } from 'angular-google-charts'; 
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app-root/app.component';
@@ -17,6 +18,7 @@ import { LoaderComponent } from './cmps/loader/loader.component';
 import { PageNotFoundComponent } from './cmps/page-not-found/page-not-found.component';
 import { ContactDetailsComponent } from './pages/contact-details/contact-details.component';
 import { ContactEditComponent } from './pages/contact-edit/contact-edit.component';
+import { GoogleChartComponent } from 'angular-google-charts';
 
 @NgModule({
     declarations: [
@@ -28,18 +30,18 @@ import { ContactEditComponent } from './pages/contact-edit/contact-edit.componen
         ContactFilterComponent,
         ContactDetailsComponent,
         StatisticPageComponent,
-        ChartComponent,
         AppHeaderComponent,
         LoaderComponent,
         PageNotFoundComponent,
         ContactEditComponent,
+        ChartComponent,
     ],
     imports: [
         BrowserModule,
         AppRoutingModule,
         FormsModule,
         HttpClientModule,
-
+        GoogleChartsModule
     ],
     providers: [],
     bootstrap: [AppComponent]
