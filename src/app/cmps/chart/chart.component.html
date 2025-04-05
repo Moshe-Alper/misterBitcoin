@@ -1,1 +1,10 @@
-<h1>chart</h1>
+<div *ngIf="loading">Loading chart data...</div>
+<div *ngIf="errorMessage" style="color: red;">{{ errorMessage }}</div>
+<google-chart
+  *ngIf="!loading && !errorMessage && myData.length > 0"
+  [type]="chartType"
+  [data]="myData"
+  [options]="chartOptions"
+  #chart
+></google-chart>
+<div *ngIf="!loading && !errorMessage && myData.length === 0">No trade volume data available.</div>

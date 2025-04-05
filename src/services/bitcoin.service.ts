@@ -28,7 +28,7 @@ export class BitcoinService {
 
   getTradeVolume(): Observable<Trade[]> {
     const data = storageService.load(this.TRADE_VOLUME_KEY)
-    console.log('data service', data)
+    // console.log('data service', data)
 
     if (data) return of(data)
     return this.http.get<BlockchainTradeVolumeResponse>(`https://api.blockchain.info/charts/trade-volume?timespan=5months&format=json&cors=true`)
@@ -41,5 +41,6 @@ export class BitcoinService {
         return vals
       }))
 }
-
 }
+
+
