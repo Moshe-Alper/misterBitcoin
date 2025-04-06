@@ -1,10 +1,18 @@
-// Colors
-$clr1: #e01e5a;
-$clr2: #293241;
-$clr3: #5c3fc5;
-$clr4: #696969;
-$clr5: #e6e9ec;
+// Bitcoin App Color Swatch (Cool Blues + Minimal Grayscale)
+$clr-primary: #1a73e8;     // Primary blue (CTAs, links)
+$clr-bg-dark: #0f172a;     // Dark background
+$clr-bg-light: #1e293b;    // Light background / cards
+$clr-muted: #94a3b8;       // Muted text or borders
+$clr-accent: #f7931a;      // Bitcoin orange accent
 
+// Simplified Grayscale
+$clr-black: #000000;
+$clr-gray-dark: #2e2e2e;   // For text or borders
+$clr-gray: #6b7280;        // Default gray
+$clr-gray-light: #d1d5db;  // Light backgrounds or separators
+$clr-white: #ffffff;
+
+// Navigation height
 $navHeight: 65px;
 
 // Breakpoints
