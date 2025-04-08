@@ -4,18 +4,42 @@
         <div>
             <label for="name">Name</label>
             <input type="text" id="name" formControlName="name">
+            <ng-container *ngIf="contactForm.controls['name'] as contactName">
+                <p class="errors" *ngIf="contactName.touched && contactName.invalid">
+                    <span *ngIf="contactName.errors?.['required']">Name is required!</span>
+                    <span *ngIf="contactName.errors?.['onlyEnglishLetters'] as errorMsg">
+                        {{ errorMsg }}
+                    </span>
+                    <span *ngIf="contactName.errors?.['nameTaken'] as errorMsg">
+                        {{ errorMsg }}
+                    </span>
+                </p>
+                <span *ngIf="contactName.pending && contactName.dirty">Fetching for name...</span>
+            </ng-container>
         </div>
         <div>
             <label for="phone">Phone</label>
             <input type="tel" id="phone" formControlName="phone">
+            <ng-container *ngIf="contactForm.controls['phone'] as contactPhone">
+                <p class="errors" *ngIf="contactPhone.touched && contactPhone.invalid">
+                    <span *ngIf="contactPhone.errors?.['required']">Phone is required!</span>
+                    <span *ngIf="contactPhone.errors?.['pattern']">Please enter a valid phone number</span>
+                </p>
+            </ng-container>
         </div>
         <div>
             <label for="email">Email</label>
             <input type="email" id="email" formControlName="email">
+            <ng-container *ngIf="contactForm.controls['email'] as contactEmail">
+                <p class="errors" *ngIf="contactEmail.touched && contactEmail.invalid">
+                    <span *ngIf="contactEmail.errors?.['required']">Email is required!</span>
+                    <span *ngIf="contactEmail.errors?.['email']">Please enter a valid email</span>
+                </p>
+            </ng-container>
         </div>
-
+         
         <section class="actions">
-            <button [disabled]="contactForm.invalid" class="btn">Save</button>
+            <button [class.disabled]="contactForm.invalid" class="btn">Save</button>
             <button routerLink="/contact" class="btn">Back</button>
         </section>
     </form>

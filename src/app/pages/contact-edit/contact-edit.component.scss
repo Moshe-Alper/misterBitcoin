@@ -26,5 +26,9 @@
       flex-direction: column;
       gap: 10px;
       min-width: 300px;
+
+      &.disabled {
+        pointer-events: initial;
+      }
     }
   }

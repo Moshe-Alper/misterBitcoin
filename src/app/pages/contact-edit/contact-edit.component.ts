@@ -5,7 +5,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
 import { ActivatedRoute, Router } from '@angular/router';
 import { filter, map, switchMap } from 'rxjs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { onlyEnglishLetters } from '../../../custom-validators/contact.validators';
+import { nameTaken, onlyEnglishLetters } from '../../../custom-validators/contact.validators';
 
 @Component({
   selector: 'contact-edit',
@@ -26,9 +26,9 @@ export class ContactEditComponent implements OnInit {
 
   constructor() {
     this.contactForm = this.fb.group({
-      name: ['', [Validators.required, onlyEnglishLetters]],
-      phone: ['', [Validators.required]],
-      email: ['', [Validators.required]]
+      name: ['', [Validators.required, onlyEnglishLetters], [nameTaken]],
+      phone: ['', [Validators.required, Validators.pattern(/^[\d\+\-\(\) ]+$/)]],
+      email: ['', [Validators.required, Validators.email]]
     })
   }
 
@@ -47,6 +47,11 @@ export class ContactEditComponent implements OnInit {
   }
 
   onSaveContact() {
+    if (this.contactForm.invalid) {
+      this.contactForm.markAllAsTouched()
+      return
+    }
+    
     const contactToSave = {...this.contact, ...this.contactForm.value}
     this.contactService.saveContact(contactToSave)
       .pipe(takeUntilDestroyed(this.destroyRef))
