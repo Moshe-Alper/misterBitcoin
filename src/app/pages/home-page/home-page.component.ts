@@ -1,5 +1,5 @@
 import { Component, DestroyRef, inject, OnInit } from '@angular/core'
-import { Observable, Subscription, switchMap } from 'rxjs'
+import { filter, Observable, Subscription, switchMap } from 'rxjs'
 
 import { User } from '../../models/user.modal'
 import { BitcoinService } from '../../../services/bitcoin.service'
@@ -25,11 +25,17 @@ export class HomePageComponent implements OnInit {
 
 
   ngOnInit() {
-    this.user$ = this.userService.loggedInUser$
+    this.user$ = this.userService.loggedInUser$.pipe(
+      filter((user): user is User => user !== null)
+    )
+
+    this.user$.subscribe(user => {
+      console.log('Logged-in user:', user);
+    
     this.BTC$ = this.user$.pipe(
       switchMap(user => this.bitcoinService.getRateStream(user.coins))
     )
+    })
   }
-
 }
 

@@ -1,1 +1,12 @@
-<p>sign-up works!</p>
+<div class="signup-form">
+	<div>please sign up</div>
+	<form (ngSubmit)="signUp()">
+		<input
+			type="text"
+			name="userName"
+			placeholder="enter username"
+            [(ngModel)]="userName"
+		/>
+		<button>Signup</button>
+	</form>
+</div>

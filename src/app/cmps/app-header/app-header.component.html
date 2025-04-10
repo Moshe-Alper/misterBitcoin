@@ -11,4 +11,8 @@
         <a routerLink="/contact" routerLinkActive="active">Contacts</a>
         <a routerLink="/statistic" routerLinkActive="active">Statistics</a>
     </nav>
+    <section class="auth" *ngIf="loggedInUser$ | async as user">
+		<h3>Hello {{ user.name | titlecase }}!</h3>
+		<button class="capitalize button" (click)="onLogout()">Logout</button>
+	</section>
 </header>

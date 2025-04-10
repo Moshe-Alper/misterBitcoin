@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
 import { interval, map, Observable, of, switchMap, timer } from 'rxjs'
 import { BlockchainChartResponse, BlockchainTradeVolumeResponse, Trade } from '../app/models/bitcoin.model'
-import { storageService } from './storage.service'
+import { utilService } from './util.service'
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +27,7 @@ export class BitcoinService {
   }
 
   getTradeVolume(): Observable<Trade[]> {
-    const data = storageService.load(this.TRADE_VOLUME_KEY)
+    const data = utilService.load(this.TRADE_VOLUME_KEY)
     // console.log('data service', data)
 
     if (data) return of(data)
@@ -37,12 +37,12 @@ export class BitcoinService {
           name: new Date(item.x * 1000).toLocaleDateString("en-US"),
           value: item.y
         }))
-        storageService.store(this.TRADE_VOLUME_KEY, vals)
+        utilService.store(this.TRADE_VOLUME_KEY, vals)
         return vals
       }))
   }
   getAvgBlockSize(): Observable<Trade[]> { 
-    const data = storageService.load(this.AVG_BLOCK_SIZE_KEY)
+    const data = utilService.load(this.AVG_BLOCK_SIZE_KEY)
     if (data) return of(data)
 
     return this.http.get<BlockchainChartResponse>(`https://api.blockchain.info/charts/n-transactions-per-block?timespan=5months&format=json&cors=true`)
@@ -51,7 +51,7 @@ export class BitcoinService {
           name: new Date(item.x * 1000).toLocaleDateString("en-US"), 
           value: item.y 
         }))
-        storageService.store(this.AVG_BLOCK_SIZE_KEY, vals)
+        utilService.store(this.AVG_BLOCK_SIZE_KEY, vals)
         return vals
       }))
   }

@@ -8,6 +8,7 @@ import { ContactDetailsComponent } from './pages/contact-details/contact-details
 import { ContactEditComponent } from './pages/contact-edit/contact-edit.component';
 import { authGuard } from './guards/auth.guard';
 import { contactResolver } from './resolvers/contact.resolver';
+import { SignUpComponent } from './pages/sign-up/sign-up.component';
 
 const routes: Routes = [
   {path: 'home', component: HomePageComponent},
@@ -22,6 +23,7 @@ const routes: Routes = [
     resolve: { contact: contactResolver}
   },
   {path: 'statistic', component: StatisticPageComponent},
+  {path: 'signup', component: SignUpComponent},
   {path: '', pathMatch: 'full', redirectTo: 'home'},
   {path: '**', component: PageNotFoundComponent},
 
