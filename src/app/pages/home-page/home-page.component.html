@@ -1,3 +1,4 @@
+<button [style.marginBlock.px]="10" (click)="onAddMoveDemo()">Add Move Demo</button>
 <section *ngIf="user$ | async as user" class="home-page">
     <h1>Hello {{ user.name }}</h1>
     <h3>Coins: {{ user.coins }}</h3>

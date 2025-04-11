@@ -30,11 +30,30 @@ export class HomePageComponent implements OnInit {
     )
 
     this.user$.subscribe(user => {
-      console.log('Logged-in user:', user);
-    
-    this.BTC$ = this.user$.pipe(
-      switchMap(user => this.bitcoinService.getRateStream(user.coins))
-    )
+      console.log('Logged-in user:', user)
+
+      this.BTC$ = this.user$.pipe(
+        switchMap(user => this.bitcoinService.getRateStream(user.coins))
+      )
+    })
+  }
+
+  onAddMoveDemo() {
+    const contact = {
+
+      "_id": "5a5664025f6ae9aa24a99fde",
+      "name": "Hallie Mclean",
+      "email": "halliemclean@renovize.com",
+      "phone": "+1 (948) 464-2888"
+    }
+    const amount = Math.ceil(Math.random() * 10)
+    this.userService.addMove(contact, amount).subscribe({
+      next: () => {
+        console.log('Move added successfully')
+      },
+      error: (err: Error | string | unknown) => {
+        console.error('Error adding move:', err)
+      }
     })
   }
 }

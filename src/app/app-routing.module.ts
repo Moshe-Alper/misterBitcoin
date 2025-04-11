@@ -11,22 +11,21 @@ import { contactResolver } from './resolvers/contact.resolver';
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
 
 const routes: Routes = [
-  {path: 'home', component: HomePageComponent},
-  {path: 'contact', component: ContactPageComponent, children: [
-    {path: 'edit', component: ContactEditComponent},
-    {path: 'edit/:contactId', component: ContactEditComponent, resolve: {contact: contactResolver}},
+  {path: 'home', component: HomePageComponent, canActivate: [authGuard]},
+  {path: 'contact', component: ContactPageComponent, canActivate: [authGuard], children: [
+    {path: 'edit', component: ContactEditComponent, canActivate: [authGuard]},
+    {path: 'edit/:contactId', component: ContactEditComponent, canActivate: [authGuard], resolve: {contact: contactResolver}},
   ]},
   {
     path: 'contact/:contactId', 
     component: ContactDetailsComponent, 
     canActivate: [authGuard],
-    resolve: { contact: contactResolver}
+    resolve: { contact: contactResolver }
   },
-  {path: 'statistic', component: StatisticPageComponent},
+  {path: 'statistic', component: StatisticPageComponent, canActivate: [authGuard]},
   {path: 'signup', component: SignUpComponent},
   {path: '', pathMatch: 'full', redirectTo: 'home'},
   {path: '**', component: PageNotFoundComponent},
-
 ]
 
 @NgModule({
