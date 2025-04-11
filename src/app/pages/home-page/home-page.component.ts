@@ -30,8 +30,6 @@ export class HomePageComponent implements OnInit {
     )
 
     this.user$.subscribe(user => {
-      console.log('Logged-in user:', user)
-
       this.BTC$ = this.user$.pipe(
         switchMap(user => this.bitcoinService.getRateStream(user.coins))
       )

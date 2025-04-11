@@ -4,6 +4,7 @@ import { Contact } from '../../models/contact.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map, Observable, switchMap } from 'rxjs';
 import { UserService } from '../../../services/user.service';
+import { User } from '../../models/user.modal';
 
 
 
@@ -21,12 +22,21 @@ export class ContactDetailsComponent  {
 
     
     contact$: Observable<Contact> = this.route.data.pipe(map(data => data['contact']))
+    user: User = {} as User   
     
-    onTransferCoins() {
-        console.log('Transfer')
+    onTransferCoins(amount: number) {
+        this.contact$.pipe(
+            switchMap(contact => this.userService.addMove(contact, amount)),
+        ).subscribe({
+            next: () => {
+                console.log(`Transferred ${amount} coins`)
+            },
+            error: (err: Error | string | unknown) => {
+                console.error('Error transferring coins:', err)
+            }
+        })
     }
     
-
     onBack() {
         this.router.navigateByUrl('/contact')
     }

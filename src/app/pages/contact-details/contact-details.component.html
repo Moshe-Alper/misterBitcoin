@@ -10,7 +10,9 @@
 
     <section class="actions">
         <transfer-fund 
+        (transferCoins)="onTransferCoins($event)"
         [contact]="contact"
+        [maxCoins]="user.coins"
         >
         </transfer-fund>
     </section>
