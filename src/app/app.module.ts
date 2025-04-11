@@ -20,6 +20,7 @@ import { ContactDetailsComponent } from './pages/contact-details/contact-details
 import { ContactEditComponent } from './pages/contact-edit/contact-edit.component';
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
 import { TransferFundComponent } from './cmps/transfer-fund/transfer-fund.component';
+import { MoveListComponent } from './cmps/move-list/move-list.component';
 
 @NgModule({
     declarations: [
@@ -38,6 +39,7 @@ import { TransferFundComponent } from './cmps/transfer-fund/transfer-fund.compon
         ChartComponent,
         SignUpComponent,
         TransferFundComponent,
+        MoveListComponent,
     ],
     imports: [
         BrowserModule,
