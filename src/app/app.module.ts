@@ -21,6 +21,7 @@ import { ContactEditComponent } from './pages/contact-edit/contact-edit.componen
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
 import { TransferFundComponent } from './cmps/transfer-fund/transfer-fund.component';
 import { MoveListComponent } from './cmps/move-list/move-list.component';
+import { MsgComponent } from './cmps/msg/msg.component';
 
 @NgModule({
     declarations: [
@@ -40,6 +41,7 @@ import { MoveListComponent } from './cmps/move-list/move-list.component';
         SignUpComponent,
         TransferFundComponent,
         MoveListComponent,
+        MsgComponent,
     ],
     imports: [
         BrowserModule,
