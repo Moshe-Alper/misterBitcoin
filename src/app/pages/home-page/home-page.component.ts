@@ -1,9 +1,10 @@
 import { Component, DestroyRef, inject, OnInit } from '@angular/core'
-import { filter, Observable, Subscription, switchMap } from 'rxjs'
+import { filter, map, Observable, Subscription, switchMap } from 'rxjs'
 
 import { User } from '../../models/user.modal'
 import { BitcoinService } from '../../../services/bitcoin.service'
 import { UserService } from '../../../services/user.service'
+import { Move } from '../../models/move.model'
 
 @Component({
   selector: 'home-page',
@@ -16,7 +17,7 @@ export class HomePageComponent implements OnInit {
 
   user$!: Observable<User>
   BTC$!: Observable<string>
-
+  userMoves$!: Observable<Move[]>
 
   constructor(
     private userService: UserService,
@@ -24,9 +25,17 @@ export class HomePageComponent implements OnInit {
   ) { }
 
 
+
+
+
   ngOnInit() {
     this.user$ = this.userService.loggedInUser$.pipe(
       filter((user): user is User => user !== null)
+    )
+
+    this.userMoves$ = this.user$.pipe(
+      filter(user => !!user),
+      map(user => user.moves.slice(0, 3)),
     )
 
     this.user$.subscribe(user => {
@@ -54,5 +63,7 @@ export class HomePageComponent implements OnInit {
       }
     })
   }
+
+
 }
 
