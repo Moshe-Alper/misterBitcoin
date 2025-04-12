@@ -41,7 +41,6 @@ import { MsgComponent } from './cmps/msg/msg.component';
         SignUpComponent,
         TransferFundComponent,
         MoveListComponent,
-        MsgComponent,
     ],
     imports: [
         BrowserModule,
@@ -49,7 +48,9 @@ import { MsgComponent } from './cmps/msg/msg.component';
         FormsModule,
         ReactiveFormsModule,
         HttpClientModule,
-        GoogleChartsModule
+        GoogleChartsModule,
+        MsgComponent,
+
     ],
     providers: [],
     bootstrap: [AppComponent]

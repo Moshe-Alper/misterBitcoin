@@ -5,6 +5,7 @@ import { User } from '../../models/user.modal'
 import { BitcoinService } from '../../../services/bitcoin.service'
 import { UserService } from '../../../services/user.service'
 import { Move } from '../../models/move.model'
+import { MsgService } from '../../../services/msg.service'
 
 @Component({
   selector: 'home-page',
@@ -21,7 +22,8 @@ export class HomePageComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private bitcoinService: BitcoinService
+    private bitcoinService: BitcoinService,
+    private msgService: MsgService,
   ) { }
 
 
@@ -56,10 +58,10 @@ export class HomePageComponent implements OnInit {
     const amount = Math.ceil(Math.random() * 10)
     this.userService.addMove(contact, amount).subscribe({
       next: () => {
-        console.log('Move added successfully')
+        this.msgService.setSuccessMsg(`Transferred ${amount} coins to ${contact.name}`)
       },
       error: (err: Error | string | unknown) => {
-        console.error('Error adding move:', err)
+        this.msgService.setErrorMsg(`Error while transferring coins`)
       }
     })
   }
