@@ -4,19 +4,24 @@
         <p><b>Name</b>{{ contact.name }}</p>
         <p><b>Phone</b>{{ contact.phone }}</p>
     </section>
-
+    
     <button (click)="onBack()" class="back-btn">Back</button>
     <button [routerLink]="['/contact/edit', contact._id]">Edit</button>
-
+    
     <section class="actions">
-        <transfer-fund 
-        (transferCoins)="onTransferCoins($event)"
+        <transfer-fund
+         (transferCoins)="onTransferCoins($event)"
         [contact]="contact"
         [maxCoins]="user.coins"
         >
         </transfer-fund>
-        <move-list>
-    
-        </move-list>
+        <ng-container *ngIf="contactMoves$ | async as moves">
+            <move-list
+              *ngIf="moves.length"
+              [contact]="contact"
+              [moves]="moves"
+            >
+            </move-list>
+          </ng-container>
     </section>
 </section>
