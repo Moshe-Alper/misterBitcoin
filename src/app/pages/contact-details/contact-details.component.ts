@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { combineLatest, filter, map, Observable, switchMap } from 'rxjs';
 import { UserService } from '../../../services/user.service';
 import { User } from '../../models/user.modal';
+import { MsgService } from '../../../services/msg.service';
 
 
 
@@ -19,6 +20,7 @@ export class ContactDetailsComponent  {
     private userService = inject(UserService)
     private route = inject(ActivatedRoute)
     private router = inject(Router)
+    private msgService = inject(MsgService)
 
     
     contact$: Observable<Contact> = this.route.data.pipe(map(data => data['contact']))
@@ -38,10 +40,10 @@ export class ContactDetailsComponent  {
             switchMap(contact => this.userService.addMove(contact, amount)),
         ).subscribe({
             next: () => {
-                console.log(`Transferred ${amount} coins`)
+                this.msgService.setSuccessMsg(`Transferred ${amount} coins`)
             },
-            error: (err: Error | string | unknown) => {
-                console.error('Error transferring coins:', err)
+            error: (err) => {
+                this.msgService.setErrorMsg(`Error while transferring coins`)
             }
         })
     }
